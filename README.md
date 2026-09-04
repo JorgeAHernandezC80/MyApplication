@@ -60,14 +60,14 @@ que ya está obsoleto.
 ## Estructura del proyecto
 
 app/src/main/java/com/example/myapplication/
-├── MainActivity.kt # Pantalla de bienvenida y menú de actividades
-├── EnviarMensajeActivity.kt # Pantalla para escribir y enviar el mensaje
-└── Activity2.kt # Pantalla que recibe el mensaje y responde
+  ├── MainActivity.kt # Pantalla de bienvenida y menú de actividades
+  ├── EnviarMensajeActivity.kt # Pantalla para escribir y enviar el mensaje
+  └── Activity2.kt # Pantalla que recibe el mensaje y responde
 
 app/src/main/res/layout/
-├── activity_main.xml
-├── activity_enviar_mensaje.xml
-└── activity_2.xml
+  ├── activity_main.xml
+  ├── activity_enviar_mensaje.xml
+  └── activity_2.xml
 
 ## Cómo ejecutarla
 
