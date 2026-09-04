@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent_success">#43A047</color>
+    <color name="accent_cancel">#E53935</color>
+    <color name="background_light">#F5F5F7</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="primary_light">#E8EAF6</color>
+    <color name="disabled_bg">#EFEFF2</color>
+    <color name="disabled_icon_bg">#E0E0E4</color>
+    <color name="chip_bg">#FFF3E0</color>
+    <color name="chip_text">#F57C00</color>
+    <color name="surface_white">#FFFFFF</color>
+</resources>
