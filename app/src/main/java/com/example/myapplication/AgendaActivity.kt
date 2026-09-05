@@ -8,11 +8,10 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-/**
- * Representa una tarea de la agenda del día.
- */
+/** Representa una tarea de la agenda del día. */
 data class Tarea(val id: Int, val titulo: String, var completada: Boolean)
 
 class AgendaActivity : AppCompatActivity() {
@@ -67,8 +66,10 @@ class AgendaActivity : AppCompatActivity() {
     }
 
     /**
-     * Infla el layout item_tarea.xml y lo llena con los datos de una tarea,
-     * conectando el checkbox para que actualice el modelo y vuelva a renderizar.
+     * Infla el layout item_tarea.xml y lo llena con los datos de una tarea.
+     * El checkbox no cambia de estado directamente al hacer clic: primero
+     * se revierte visualmente y se muestra un diálogo de confirmación;
+     * solo la respuesta del diálogo decide el estado final de la tarea.
      */
     private fun crearFilaTarea(tarea: Tarea): View {
         val fila = LayoutInflater.from(this).inflate(R.layout.item_tarea, contPendientes, false)
@@ -80,17 +81,37 @@ class AgendaActivity : AppCompatActivity() {
         checkTarea.isChecked = tarea.completada
         aplicarEstiloSegunEstado(tvTituloTarea, tarea.completada)
 
-        checkTarea.setOnCheckedChangeListener { _, marcado ->
-            tarea.completada = marcado
-            renderizarTareas()
+        checkTarea.setOnClickListener {
+            // El CheckBox ya cambió su estado visual al hacer clic; lo
+            // devolvemos a como estaba mientras esperamos la respuesta.
+            checkTarea.isChecked = tarea.completada
+            mostrarDialogoConfirmacion(tarea)
         }
 
         return fila
     }
 
-    /**
-     * Tacha el texto y lo atenúa cuando la tarea está completada.
-     */
+    /** Pregunta al usuario si la tarea realmente se completó.
+     * "Sí" la mueve a Completadas, "No" la deja (o la devuelve) a Pendientes. */
+    private fun mostrarDialogoConfirmacion(tarea: Tarea) {
+        AlertDialog.Builder(this)
+            .setTitle("Confirmar tarea")
+            .setMessage("¿La tarea \"${tarea.titulo}\" se completó?")
+            .setPositiveButton("Sí") { dialog, _ ->
+                tarea.completada = true
+                renderizarTareas()
+                dialog.dismiss()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                tarea.completada = false
+                renderizarTareas()
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .show()
+    }
+
+    /** Tacha el texto y lo atenúa cuando la tarea está completada. */
     private fun aplicarEstiloSegunEstado(texto: TextView, completada: Boolean) {
         if (completada) {
             texto.paintFlags = texto.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
