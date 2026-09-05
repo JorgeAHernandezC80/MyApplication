@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="enviar_mensaje_back">Atrás</string>
+    <string name="enviar_mensaje_titulo">Enviar mensaje</string>
+    <string name="enviar_mensaje_subtitulo">Escribe algo y compártelo con la siguiente pantalla</string>
+    <string name="enviar_mensaje_hint">Tu mensaje</string>
+    <string name="enviar_mensaje_btn_cancelar">Cancelar</string>
+    <string name="enviar_mensaje_btn_enviar">Enviar</string>
 </resources>

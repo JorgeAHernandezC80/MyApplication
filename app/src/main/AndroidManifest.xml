@@ -27,6 +27,11 @@
             android:parentActivityName=".MainActivity" />
 
         <activity
+            android:name=".AgendaActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
             android:name=".Activity2"
             android:exported="false" />
 

@@ -16,7 +16,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
-        android:contentDescription="@null"
+        android:contentDescription="@string/enviar_mensaje_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -24,7 +24,7 @@
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enviar mensaje"
+        android:text="@string/enviar_mensaje_titulo"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/text_primary"
@@ -37,7 +37,7 @@
         android:id="@+id/tvSubtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escribe algo y compártelo con la siguiente pantalla"
+        android:text="@string/enviar_mensaje_subtitulo"
         android:textSize="14sp"
         android:textColor="@color/text_secondary"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo"
@@ -50,7 +50,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Tu mensaje"
+        android:hint="@string/enviar_mensaje_hint"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,19 +63,41 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEnviar"
+    <!-- Fila con los dos botones: Cancelar (secundario) y Enviar (principal) -->
+    <LinearLayout
+        android:id="@+id/filaBotones"
         android:layout_width="0dp"
-        android:layout_height="52dp"
-        android:text="Enviar"
-        android:textSize="16sp"
-        app:icon="@android:drawable/ic_menu_send"
-        app:iconGravity="textStart"
-        app:cornerRadius="12dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/tilMensaje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="@string/enviar_mensaje_btn_cancelar"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnviar"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="@string/enviar_mensaje_btn_enviar"
+            android:textSize="16sp"
+            app:icon="@android:drawable/ic_menu_send"
+            app:iconGravity="textStart"
+            app:cornerRadius="12dp"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardEstado"
@@ -84,7 +106,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="2dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/btnEnviar"
+        app:layout_constraintTop_toBottomOf="@id/filaBotones"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp">

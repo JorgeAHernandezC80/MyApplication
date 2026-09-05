@@ -15,6 +15,7 @@ class EnviarMensajeActivity : AppCompatActivity() {
 
     private lateinit var btnAtras: ImageView
     private lateinit var etMensaje: TextInputEditText
+    private lateinit var btnCancelar: MaterialButton
     private lateinit var btnEnviar: MaterialButton
     private lateinit var cardEstado: MaterialCardView
     private lateinit var tvEstado: TextView
@@ -27,11 +28,18 @@ class EnviarMensajeActivity : AppCompatActivity() {
 
         btnAtras = findViewById(R.id.btnAtras)
         etMensaje = findViewById(R.id.etMensaje)
+        btnCancelar = findViewById(R.id.btnCancelar)
         btnEnviar = findViewById(R.id.btnEnviar)
         cardEstado = findViewById(R.id.cardEstado)
         tvEstado = findViewById(R.id.tvEstado)
 
         btnAtras.setOnClickListener { finish() }
+
+        // Cancelar descarta el mensaje escrito y regresa a la pantalla anterior
+        btnCancelar.setOnClickListener {
+            etMensaje.text?.clear()
+            finish()
+        }
 
         // Registra el "escucha" que espera la respuesta de Activity2
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

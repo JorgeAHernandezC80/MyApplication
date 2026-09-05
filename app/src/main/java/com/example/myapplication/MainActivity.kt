@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvSaludo: TextView
     private lateinit var ivIconoSaludo: ImageView
     private lateinit var cardEnviarMensaje: MaterialCardView
+    private lateinit var cardVerAgenda: MaterialCardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +22,17 @@ class MainActivity : AppCompatActivity() {
         tvSaludo = findViewById(R.id.tvSaludo)
         ivIconoSaludo = findViewById(R.id.ivIconoSaludo)
         cardEnviarMensaje = findViewById(R.id.cardEnviarMensaje)
+        cardVerAgenda = findViewById(R.id.cardVerAgenda)
 
         mostrarSaludoSegunHora()
 
-        // Única actividad activa del listado: Enviar mensaje
+        // Actividades activas del listado: Enviar mensaje y Ver agenda
         cardEnviarMensaje.setOnClickListener {
             startActivity(Intent(this, EnviarMensajeActivity::class.java))
+        }
+
+        cardVerAgenda.setOnClickListener {
+            startActivity(Intent(this, AgendaActivity::class.java))
         }
     }
 
@@ -38,9 +44,9 @@ class MainActivity : AppCompatActivity() {
         val hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         val saludo = when (hora) {
-            in 5..11 -> "Buenos días"
-            in 12..18 -> "Buenas tardes"
-            else -> "Buenas noches"
+            in 5..11 -> "Hola, Buenos días!."
+            in 12..18 -> "Hola, Buenas tardes!."
+            else -> "Hola, Buenas noches!."
         }
 
         val esDeDia = hora in 6..18
